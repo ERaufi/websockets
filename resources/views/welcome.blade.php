@@ -9,15 +9,24 @@
     </head>
 
     <body>
+        {{ Auth::id() }}
         @vite('resources/js/app.js')
     </body>
     <script>
+        // setTimeout(() => {
+        //     window.Echo.channel('testChannel')
+        //         .listen('testingEvent', (e) => {
+        //             console.log(e);
+        //         })
+        // }, 200);
+
+
         setTimeout(() => {
-            window.Echo.channel('testChannel')
-                .listen('testingEvent', (e) => {
+            window.Echo.private('private-channel.user.{{ Auth::id() }}')
+                .listen('PrivateEvent', (e) => {
                     console.log(e);
                 })
-        }, 200);
+        }, 400);
     </script>
 
 </html>
